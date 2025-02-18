@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Hiragana</title>
+</head>
+<body>
+    <script src="hiragana-map.js"></script>
+    <script type="module">
+        const hiraganaDisplay = document.createElement('textarea');
+        hiraganaDisplay.readOnly = true;
+        hiraganaDisplay.style.width = '6rem';
+        hiraganaDisplay.style.height = '6rem';
+        hiraganaDisplay.style.textAlign = 'center';
+        hiraganaDisplay.style.resize = 'none';
+        hiraganaDisplay.style.fontSize = '4rem';
+        hiraganaDisplay.style.display = 'block';
+        document.body.appendChild(hiraganaDisplay);
+
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.style.width = '6rem';
+        document.body.appendChild(inputField);
+
+        inputField.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                const input = event.target.value;
+                if (!input) {
+                    return;
+                }
+
+                if (hiraganaMap[hiraganaDisplay.textContent].includes(input)) {
+                    hiraganaDisplay.style.color = 'green';
+                    setTimeout(() => {
+                        hiraganaDisplay.style.color = 'black';
+                        inputField.value = '';
+                        startGame();
+                    }, 1000);
+                } else {
+                    hiraganaDisplay.style.color = 'red';
+                    setTimeout(() => {
+                        hiraganaDisplay.style.color = 'black';
+                        inputField.value = '';
+                    }, 1000);
+                }
+            }
+        });
+
+        startGame();
+
+        function startGame() {
+            displayHirigana();
+
+            function displayHirigana() {
+                const hiraganas = Array.from(Object.keys(hiraganaMap));
+                const randomIndex = Math.floor(Math.random() * hiraganas.length);
+                hiraganaDisplay.textContent = hiraganas[randomIndex];
+            }
+        }
+    </script>
+</body>
+</html>
