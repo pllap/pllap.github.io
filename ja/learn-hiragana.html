@@ -26,8 +26,11 @@
             transition: background-color 0.2s, color 0.2s;
         }
 
-        .dark-mode-button {
+        .hiragana-table-link {
             margin-top: auto;
+        }
+
+        button {
             margin-bottom: 20px;
             padding: 10px 20px;
             font-size: 1rem;
@@ -63,6 +66,16 @@
         inputField.style.width = '6rem';
         inputField.style.display = 'block';
         document.body.appendChild(inputField);
+
+        const hiraganaTableLink = document.createElement('button');
+        hiraganaTableLink.textContent = '표 보러가기';
+        hiraganaTableLink.classList.add('hiragana-table-link');
+        hiraganaTableLink.addEventListener('click', () => {
+            window.location.href = 'hiragana-grid.html';
+        });
+        hiraganaTableLink.href = 'hiragana-grid.html';
+        hiraganaTableLink.style.display = 'block';
+        document.body.appendChild(hiraganaTableLink);
 
         const darkModeButton = document.createElement('button');
         darkModeButton.textContent = '불끄기';
