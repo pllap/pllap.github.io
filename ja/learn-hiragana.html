@@ -75,9 +75,9 @@
         startGame();
 
         function startGame() {
-            displayHirigana();
+            displayHiragana();
 
-            function displayHirigana() {
+            function displayHiragana() {
                 const hiraganas = Array.from(Object.keys(hiraganaMap));
                 const randomIndex = Math.floor(Math.random() * hiraganas.length);
                 hiraganaDisplay.textContent = hiraganas[randomIndex];
