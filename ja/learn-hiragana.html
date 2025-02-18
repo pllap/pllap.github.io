@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn Hiragana</title>
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: flex-start;
+            margin: 0;
+        }
+
         .dark-mode {
             background-color: black;
             color: white;
@@ -13,6 +22,13 @@
         .light-mode {
             background-color: white;
             color: black;
+        }
+
+        .dark-mode-button {
+            margin-top: auto;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -37,6 +53,7 @@
 
         const darkModeButton = document.createElement('button');
         darkModeButton.textContent = '불끄기';
+        darkModeButton.classList.add('dark-mode-button');
         darkModeButton.addEventListener('click', () => {
             if (document.body.classList.contains('dark-mode')) {
                 darkModeButton.textContent = '불끄기';
