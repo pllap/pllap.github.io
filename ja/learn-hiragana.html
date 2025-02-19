@@ -110,19 +110,19 @@
                     return;
                 }
 
+                if (hiraganaDisplay.classList.contains('incorrect')) {
+                    hiraganaDisplay.classList.remove('incorrect');
+                }
+                inputField.value = '';
+
                 if (hiraganaMap[hiraganaDisplay.textContent].includes(input)) {
                     hiraganaDisplay.classList.add('correct');
                     setTimeout(() => {
                         hiraganaDisplay.classList.remove('correct');
-                        inputField.value = '';
                         startGame();
-                    }, 1000);
+                    }, 500);
                 } else {
                     hiraganaDisplay.classList.add('incorrect');
-                    setTimeout(() => {
-                        hiraganaDisplay.classList.remove('incorrect');
-                        inputField.value = '';
-                    }, 1000);
                 }
             }
         });
