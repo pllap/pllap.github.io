@@ -26,6 +26,14 @@
             transition: background-color 0.2s, color 0.2s;
         }
 
+        .correct {
+            color: blue !important;
+        }
+
+        .incorrect {
+            color: red !important;
+        }
+
         .hiragana-table-link {
             margin-top: auto;
         }
@@ -103,16 +111,16 @@
                 }
 
                 if (hiraganaMap[hiraganaDisplay.textContent].includes(input)) {
-                    hiraganaDisplay.style.color = 'blue';
+                    hiraganaDisplay.classList.add('correct');
                     setTimeout(() => {
-                        hiraganaDisplay.style.color = 'black';
+                        hiraganaDisplay.classList.remove('correct');
                         inputField.value = '';
                         startGame();
                     }, 1000);
                 } else {
-                    hiraganaDisplay.style.color = 'red';
+                    hiraganaDisplay.classList.add('incorrect');
                     setTimeout(() => {
-                        hiraganaDisplay.style.color = 'black';
+                        hiraganaDisplay.classList.remove('incorrect');
                         inputField.value = '';
                     }, 1000);
                 }
