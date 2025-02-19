@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn Hiragana Sentences</title>
+    <style>
+        .correct {
+            color: blue !important;
+        }
+
+        .incorrect {
+            color: red !important;
+        }
+    </style>
+</head>
+<body>
+    <script src="problem-set.js"></script>
+    <script>
+        const sentenceDisplay = document.createElement('div');
+        const randomIndex = Math.floor(Math.random() * hiraganaSentences.length);
+        sentenceDisplay.textContent = hiraganaSentences[randomIndex];
+        document.body.appendChild(sentenceDisplay);
+
+        const inputField = document.createElement('input');
+        inputField.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                const input = event.target.value;
+                if (!input) {
+                    return;
+                }
+
+                if (sentenceDisplay.classList.contains('incorrect')) {
+                    sentenceDisplay.classList.remove('incorrect');
+                }
+                inputField.value = '';
+
+                checkAnswer(input);
+            }
+        });
+        document.body.appendChild(inputField);
+
+        function checkAnswer(input) {
+            let answerJa = sentenceDisplay.textContent.trim();
+            let inputKo = input.trim();
+
+            // 한 글자씩 비교해가며 일치하는 글자 제거
+            [...answerJa].forEach((char, index) => {
+                hiraganaMap[char].some((hangul) => {
+                    if (inputKo.startsWith(hangul)) {
+                        inputKo = inputKo.replace(hangul, '');
+                        return true;
+                    }
+                });
+            });
+
+            // 모든 글자가 일치함으로써 빈 문자열이 되었다면 정답
+            if (!inputKo) {
+                sentenceDisplay.classList.add('correct');
+                setTimeout(() => {
+                    sentenceDisplay.classList.remove('correct');
+                    const randomIndex = Math.floor(Math.random() * hiraganaSentences.length);
+                    sentenceDisplay.textContent = hiraganaSentences[randomIndex];
+                }, 500);
+            } else {
+                sentenceDisplay.classList.add('incorrect');
+            }
+        }
+    </script>
+</body>
+</html>
