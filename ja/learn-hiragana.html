@@ -51,8 +51,10 @@
     <a href="index.html">이전 페이지</a>
     <script src="hiragana-map.js"></script>
     <script type="module">
-        const hiraganaDisplay = document.createElement('textarea');
-        hiraganaDisplay.readOnly = true;
+        const hiraganaDisplay = document.createElement('div');
+        hiraganaDisplay.style.userSelect = 'none';
+        hiraganaDisplay.style.cursor = 'default';
+        hiraganaDisplay.style.border = '1px solid black';
         hiraganaDisplay.style.width = '6rem';
         hiraganaDisplay.style.height = '6rem';
         hiraganaDisplay.style.textAlign = 'center';
