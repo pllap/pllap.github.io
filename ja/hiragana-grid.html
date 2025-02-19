@@ -26,62 +26,57 @@
 </head>
 <body>
     <a href="learn-hiragana.html">퀴즈 맞히러 가기</a>
-    <div class="hiragana-grid">
-        <div class="hiragana">あ</div>
-        <div class="hiragana">い</div>
-        <div class="hiragana">う</div>
-        <div class="hiragana">え</div>
-        <div class="hiragana">お</div>
-        <div class="hiragana">か</div>
-        <div class="hiragana">き</div>
-        <div class="hiragana">く</div>
-        <div class="hiragana">け</div>
-        <div class="hiragana">こ</div>
-        <div class="hiragana">さ</div>
-        <div class="hiragana">し</div>
-        <div class="hiragana">す</div>
-        <div class="hiragana">せ</div>
-        <div class="hiragana">そ</div>
-        <div class="hiragana">た</div>
-        <div class="hiragana">ち</div>
-        <div class="hiragana">つ</div>
-        <div class="hiragana">て</div>
-        <div class="hiragana">と</div>
-        <div class="hiragana">な</div>
-        <div class="hiragana">に</div>
-        <div class="hiragana">ぬ</div>
-        <div class="hiragana">ね</div>
-        <div class="hiragana">の</div>
-        <div class="hiragana">は</div>
-        <div class="hiragana">ひ</div>
-        <div class="hiragana">ふ</div>
-        <div class="hiragana">へ</div>
-        <div class="hiragana">ほ</div>
-        <div class="hiragana">ま</div>
-        <div class="hiragana">み</div>
-        <div class="hiragana">む</div>
-        <div class="hiragana">め</div>
-        <div class="hiragana">も</div>
-        <div class="hiragana">や</div>
-        <div class="hiragana"></div>
-        <div class="hiragana">ゆ</div>
-        <div class="hiragana"></div>
-        <div class="hiragana">よ</div>
-        <div class="hiragana">ら</div>
-        <div class="hiragana">り</div>
-        <div class="hiragana">る</div>
-        <div class="hiragana">れ</div>
-        <div class="hiragana">ろ</div>
-        <div class="hiragana">わ</div>
-        <div class="hiragana"></div>
-        <div class="hiragana"></div>
-        <div class="hiragana"></div>
-        <div class="hiragana">を</div>
-        <div class="hiragana">ん</div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hiraganaChars = [
+                'あ', 'い', 'う', 'え', 'お',
+                'か', 'き', 'く', 'け', 'こ',
+                'さ', 'し', 'す', 'せ', 'そ',
+                'た', 'ち', 'つ', 'て', 'と',
+                'な', 'に', 'ぬ', 'ね', 'の',
+                'は', 'ひ', 'ふ', 'へ', 'ほ',
+                'ま', 'み', 'む', 'め', 'も',
+                'や', '', 'ゆ', '', 'よ',
+                'ら', 'り', 'る', 'れ', 'ろ',
+                'わ', '', '', '', 'を',
+                'ん', '', '', '', '',
+            ];
+            const pronunciations = [
+                '아', '이', '우', '에', '오',
+                '카', '키', '쿠', '케', '코',
+                '사', '시', '스', '세', '소',
+                '타', '치', '츠', '테', '토',
+                '나', '니', '누', '네', '노',
+                '하', '히', '후', '헤', '호',
+                '마', '미', '무', '메', '모',
+                '야', '', '유', '', '요',
+                '라', '리', '루', '레', '로',
+                '와', '', '', '', '오',
+                '응', '', '', '', '',
+            ];
+
+            const grid = document.createElement('div');
+            grid.className = 'hiragana-grid';
+
+            hiraganaChars.forEach(char => {
+                const cell = document.createElement('div');
+                cell.style.userSelect = 'none';
+                cell.style.cursor = 'default';
+                cell.className = 'hiragana';
+                cell.textContent = char;
+                cell.addEventListener('click', function() {
+                    const index = hiraganaChars.indexOf(char);
+                    if (this.textContent === char) {
+                        this.textContent = pronunciations[index];
+                    } else {
+                        this.textContent = char;
+                    }
+                });
+                grid.appendChild(cell);
+            });
+
+            document.body.appendChild(grid);
+        });
+    </script>
 </body>
 </html>
