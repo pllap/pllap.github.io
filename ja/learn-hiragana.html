@@ -36,14 +36,16 @@
             font-size: 1rem;
         }
 
-        .dark-mode button, .dark-mode textarea, .dark-mode input {
+        .dark-mode button, .dark-mode div, .dark-mode input {
             background-color: #333;
             color: white;
+            border: 1px solid white;
         }
 
-        .light-mode button, .light-mode textarea, .light-mode input {
+        .light-mode button, .light-mode div, .light-mode input {
             background-color: white;
             color: black;
+            border: 1px solid black;
         }
     </style>
 </head>
@@ -54,7 +56,6 @@
         const hiraganaDisplay = document.createElement('div');
         hiraganaDisplay.style.userSelect = 'none';
         hiraganaDisplay.style.cursor = 'default';
-        hiraganaDisplay.style.border = '1px solid black';
         hiraganaDisplay.style.width = '6rem';
         hiraganaDisplay.style.height = '6rem';
         hiraganaDisplay.style.textAlign = 'center';
