@@ -44,15 +44,24 @@
             let answerJa = sentenceDisplay.textContent.trim();
             let inputKo = input.trim();
 
-            // 한 글자씩 비교해가며 일치하는 글자 제거
-            [...answerJa].forEach((char, index) => {
-                hiraganaMap[char].some((hangul) => {
-                    if (inputKo.startsWith(hangul)) {
-                        inputKo = inputKo.replace(hangul, '');
-                        return true;
+            // 일본어 음절과 한국어 음절을 매핑한 객체를 이용해, 문자열을 앞에서부터 순회하며 일치하는 발음이라면 제거해 감
+            // TODO: 촉음도 지원하도록 개선하기 (못할 거 같은데;)
+            while (answerJa.length > 0) {
+                const found = Object.entries(hiraganaMap).some(([hiragana, pronunciations]) => {
+                    if (answerJa.startsWith(hiragana)) {
+                        answerJa = answerJa.replace(hiragana, '');
+                        return pronunciations.some((hangul) => {
+                            if (inputKo.startsWith(hangul)) {
+                                inputKo = inputKo.replace(hangul, '');
+                                return true;
+                            }
+                        });
                     }
                 });
-            });
+                if (!found) {
+                    break;
+                }
+            }
 
             // 모든 글자가 일치함으로써 빈 문자열이 되었다면 정답
             if (!inputKo) {
