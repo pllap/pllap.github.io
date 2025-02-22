@@ -50,7 +50,7 @@
 
         function checkAnswer(input) {
             let answerJa = sentenceDisplay.textContent.trim();
-            let inputKo = input.trim();
+            let inputKo = input.trim().replace(/ /g, '');
 
             // 일본어 음절과 한국어 음절을 매핑한 객체를 이용해, 문자열을 앞에서부터 순회하며 일치하는 발음이라면 제거해 감
             while (answerJa.length > 0) {
